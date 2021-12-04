@@ -144,6 +144,9 @@ require("nvim-treesitter.configs").setup({
 		-- colors = {}, -- table of hex strings
 	},
 	ensure_installed = { "norg" },
+	indent = {
+		enable = true,
+	}
 })
 
 -- NVIM ICONS

@@ -28,7 +28,7 @@ Plug 'tpope/vim-surround'
 Plug '907th/vim-auto-save'
 Plug 'jiangmiao/auto-pairs'
 Plug 'lukas-reineke/indent-blankline.nvim'
-Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  
 Plug 'p00f/nvim-ts-rainbow'
 Plug 'liuchengxu/vista.vim'
 "SNIPS

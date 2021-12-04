@@ -45,6 +45,7 @@ let g:indentLine_conceallevel=1
 "NEOFORMATTER
 let g:neoformat_enabled_html = ['prettier']
 let g:neoformat_enabled_javascript = ['prettier']
+let g:neoformat_enabled_python = ['yapf']
 
 "FERN CONF
 let g:fern#renderer = "nerdfont"
