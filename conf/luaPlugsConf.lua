@@ -105,6 +105,7 @@ cmp.setup({
 	},
 })
 
+
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 require("lspconfig").cssls.setup({
@@ -130,7 +131,6 @@ parser_configs.norg = {
 		branch = "main",
 	},
 }
-
 -- NEOVIM TREESITTER
 require("nvim-treesitter.configs").setup({
 	highlight = {
@@ -139,20 +139,15 @@ require("nvim-treesitter.configs").setup({
 	},
 	rainbow = {
 		enable = true,
-		-- extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-		-- max_file_lines = nil, -- Do not enable for files with more than n lines, int
-		-- colors = {}, -- table of hex strings
 	},
 	ensure_installed = { "norg" },
 	indent = {
 		enable = true,
-	}
+	},
 })
 
 -- NVIM ICONS
 require("nvim-web-devicons").setup({
-	-- your personnal icons can go here (to override)
-	-- DevIcon will be appended to `name`
 	override = {
 		zsh = {
 			icon = "",
@@ -160,8 +155,6 @@ require("nvim-web-devicons").setup({
 			name = "Zsh",
 		},
 	},
-	-- globally enable default icons (default to false)
-	-- will get overriden by `get_icons` option
 	default = true,
 })
 

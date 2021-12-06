@@ -7,8 +7,10 @@ set linebreak
 set smartindent
 set termguicolors
 "INDENT NECESSARY
-set tabstop
-set tabstop=2
+set tabstop=4
+set softtabstop=4 
+set shiftwidth=4 
+set expandtab
 set splitright
 set splitbelow
 "COMPLETION SETTINGS
@@ -18,7 +20,7 @@ set completeopt-=preview
 syntax sync minlines=256
 set nocursorcolumn
 set nocursorline
-set completeopt=noinsert,noselect,menuone
+set completeopt=noinsert,noselect
 set ttimeoutlen=0
 set re=1
 set ignorecase

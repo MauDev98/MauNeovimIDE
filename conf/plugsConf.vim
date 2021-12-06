@@ -41,11 +41,14 @@ let g:indentLine_fileTypeExclude = ['vimwiki', 'markdown']
 let g:indentLine_bufTypeExclude = ['help', 'terminal', 'vimwiki', 'markdown']
 let g:indentLine_concealcursor=""
 let g:indentLine_conceallevel=1
+" autocmd Filetype html setlocal tabstop=2 shiftwidth=2 softtabstop=2
+" autocmd Filetype css setlocal tabstop=2 shiftwidth=2 softtabstop=2
+" autocmd Filetype javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
 "NEOFORMATTER
-let g:neoformat_enabled_html = ['prettier']
-let g:neoformat_enabled_javascript = ['prettier']
-let g:neoformat_enabled_python = ['yapf']
+" let g:neoformat_enabled_html = ['prettier']
+" let g:neoformat_enabled_javascript = ['prettier']
+" let g:neoformat_enabled_python = ['yapf']
 
 "FERN CONF
 let g:fern#renderer = "nerdfont"
@@ -99,20 +102,6 @@ let g:neoformat_php_php_beautifier = {
     \ }
 
 let g:neoformat_enabled_php = ['php_beautifier']
-
-"NEW COQ SETTINGS
-" let g:coq_settings = { "keymap.recommended": v:false, "clients.tabnine.enabled": v:true, "auto_start": 'shut-up'}
-"
-" ino <silent><expr> <CR>    pumvisible() ? (complete_info().selected == -1 ? "\<C-e><CR>" : "\<C-y>") : "\<CR>"
-" ino <silent><expr> <M-j>   pumvisible() ? "\<C-n>" : "\<Tab>"
-" ino <silent><expr> <M-k>   pumvisible() ? "\<C-p>" : "\<BS>"
-" ino <silent><expr> <BS>    pumvisible() ? "\<C-e><BS>"  : "\<BS>"
-" ino <silent><expr> <Esc>   pumvisible() ? "\<C-e><Esc>" : "\<Esc>"
-" ino <silent><expr> <C-c>   pumvisible() ? "\<C-e><C-c>" : "\<C-c>"
-
-"COC-NVIM CONF
-" inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                              " \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 "CMP HIGHLIGHT
 highlight! CmpItemKindKeyword guibg=NONE guifg=#D4D4D4
