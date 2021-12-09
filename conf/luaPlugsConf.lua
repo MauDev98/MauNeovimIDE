@@ -105,7 +105,6 @@ cmp.setup({
 	},
 })
 
-
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 require("lspconfig").cssls.setup({
@@ -139,6 +138,17 @@ require("nvim-treesitter.configs").setup({
 	},
 	rainbow = {
 		enable = true,
+		-- disable = { "html" },
+		extended_mode = false,
+		colors = {
+			"#cc241d",
+			"#EED8B9",
+			"#b16286",
+			"#d79921",
+			"#689d6a",
+			"#d65d0e",
+			"#458588",
+		},
 	},
 	ensure_installed = { "norg" },
 	indent = {

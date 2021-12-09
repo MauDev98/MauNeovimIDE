@@ -100,12 +100,9 @@ function DeleteBuffers()
     endif
   endfor
 endfunction
-
+"SESSION MANAGER
 nnoremap <leader>bw :call DeleteBuffers()<CR>
 nnoremap <leader>sl :SessionLoad _<C-D>
 nnoremap <leader>ss :SessionSave _<C-D>
-
-
-
-
-
+"NEOFORMAT
+nnoremap Ff :Neoformat<CR>

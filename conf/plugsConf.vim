@@ -41,14 +41,13 @@ let g:indentLine_fileTypeExclude = ['vimwiki', 'markdown']
 let g:indentLine_bufTypeExclude = ['help', 'terminal', 'vimwiki', 'markdown']
 let g:indentLine_concealcursor=""
 let g:indentLine_conceallevel=1
-" autocmd Filetype html setlocal tabstop=2 shiftwidth=2 softtabstop=2
-" autocmd Filetype css setlocal tabstop=2 shiftwidth=2 softtabstop=2
-" autocmd Filetype javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType html setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
 "NEOFORMATTER
-" let g:neoformat_enabled_html = ['prettier']
-" let g:neoformat_enabled_javascript = ['prettier']
-" let g:neoformat_enabled_python = ['yapf']
+let g:neoformat_enabled_html = ['prettier']
+let g:neoformat_enabled_javascript = ['jsbeautify']
+let g:neoformat_enabled_css = ['cssbeautify']
+let g:neoformat_enabled_python = ['black']
 
 "FERN CONF
 let g:fern#renderer = "nerdfont"

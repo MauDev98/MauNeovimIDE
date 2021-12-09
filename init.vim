@@ -36,5 +36,4 @@ luafile ~/.config/nvim/conf/lualine.lua
 
 
 " Load the colorscheme
-let g:onedark_style = 'darker'
 colorscheme onedark 

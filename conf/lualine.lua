@@ -5,7 +5,7 @@ local lualine = require("lualine")
 
 -- Color table for highlights
 local colors = {
-	bg = "#3A465B",
+	bg = "#4A5261",
 	fg = "#D1D7E3",
 	yellow = "#ECBE7B",
 	cyan = "#008080",
@@ -45,7 +45,7 @@ local config = {
 			normal = { c = { fg = colors.fg, bg = colors.bg } },
 			inactive = { c = { fg = colors.fg, bg = colors.bg } },
 		},
-                disabled_filetypes = {'dashboard'}
+		disabled_filetypes = { "dashboard" },
 	},
 	sections = {
 		-- these are to remove the defaults
@@ -208,7 +208,7 @@ ins_right({
 	"fileformat",
 	upper = true,
 	-- icons_enabled = true, -- I think icons are cool but Eviline doesn't have them. sigh
-        icon = "",
+	icon = "",
 	color = { fg = colors.green, gui = "bold" },
 })
 
