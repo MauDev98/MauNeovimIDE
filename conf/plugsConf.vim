@@ -61,8 +61,8 @@ augroup END
 
 function! s:init_fern() abort
   " Use 'select' instead of 'edit' for default 'open' action
-  nmap <buffer> v <Plug>(fern-action-open:vsplit)
-  nmap <buffer> b <Plug>(fern-action-open:split)
+  nmap <buffer> s <Plug>(fern-action-open:vsplit)
+  nmap <buffer> x <Plug>(fern-action-open:split)
 endfunction
 
 augroup fern-custom
@@ -88,41 +88,25 @@ let g:dashboard_custom_header = [
 
 "FLOATERM
 let g:floaterm_autoinsert = v:false
-let g:floaterm_wintype = 'split'
-let g:floaterm_position = 'belowright'
-let g:floaterm_height = 0.3
+let g:floaterm_wintype = 'float'
+let g:floaterm_position = 'bottomright'
+let g:floaterm_height = 0.5
+let g:floaterm_width = 0.5
 
 "VISTA
 let g:vista_default_executive = 'ctags'
-
 let g:neoformat_php_php_beautifier = {
      \ 'exe': 'php_beautifier',
     \ 'args': ['--filters "NewLines(before=if:switch:T_CLASS,after=T_COMMENT:function)"']
     \ }
-
 let g:neoformat_enabled_php = ['php_beautifier']
 
-"CMP HIGHLIGHT
-highlight! CmpItemKindKeyword guibg=NONE guifg=#D4D4D4
-
-" gray
-highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080
-" blue
-highlight! CmpItemAbbrMatch guibg=NONE guifg=#569CD6
-highlight! CmpItemAbbrMatchFuzzy guibg=NONE guifg=#569CD6
-" light blue
-highlight! CmpItemKindVariable guibg=NONE guifg=#9CDCFE
-highlight! CmpItemKindInterface guibg=NONE guifg=#9CDCFE
-highlight! CmpItemKindText guibg=NONE guifg=#9CDCFE
-" pink
-highlight! CmpItemKindFunction guibg=NONE guifg=#C586C0
-highlight! CmpItemKindMethod guibg=NONE guifg=#C586C0
-" front
-highlight! CmpItemKindKeyword guibg=NONE guifg=#D4D4D4
-highlight! CmpItemKindProperty guibg=NONE guifg=#D4D4D4
-highlight! CmpItemKindUnit guibg=NONE guifg=#D4D4D4
-
-
-
-
+"COQ CONFIG
+let g:coq_settings = {"auto_start": 'shut-up', "keymap.recommended": v:false, "keymap.pre_select": v:false, "clients.tabnine.enabled" : v:true, "clients.tabnine.weight_adjust": 2}
+ino <silent><expr> <Esc>   pumvisible() ? "\<C-e><Esc>" : "\<Esc>"
+ino <silent><expr> <C-c>   pumvisible() ? "\<C-e><C-c>" : "\<C-c>"
+ino <silent><expr> <BS>    pumvisible() ? "\<C-e><BS>"  : "\<BS>"
+ino <silent><expr> <CR>    pumvisible() ? (complete_info().selected == -1 ? "\<C-e><CR>" : "\<C-y>") : "\<CR>"
+ino <silent><expr> <M-j>   pumvisible() ? "\<C-n>" : "\<Tab>"
+ino <silent><expr> <M-k> pumvisible() ? "\<C-p>" : "\<BS>"
 

@@ -2,6 +2,8 @@ set number
 set relativenumber
 set clipboard=unnamed
 filetype plugin on
+set nocompatible
+set hidden
 set breakindent
 set linebreak
 set smartindent
@@ -20,7 +22,6 @@ set completeopt-=preview
 syntax sync minlines=256
 set nocursorcolumn
 set nocursorline
-set completeopt=noinsert,noselect
 set ttimeoutlen=0
 set re=1
 set ignorecase
@@ -32,8 +33,11 @@ source ~/.config/nvim/conf/plugins.vim
 source ~/.config/nvim/conf/mappings.vim
 source ~/.config/nvim/conf/plugsConf.vim
 luafile ~/.config/nvim/conf/luaPlugsConf.lua
-luafile ~/.config/nvim/conf/lualine.lua
+luafile ~/.config/nvim/conf/which-key.lua
+
+lua require('colorbuddy').colorscheme('onebuddy')
 
 
 " Load the colorscheme
-colorscheme onedark 
+" set background=dark 
+" colorscheme alduin

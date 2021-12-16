@@ -1,13 +1,14 @@
 call plug#begin('~/.config/nvim/plugged')
 "AUTOCOMPLETE AND LSP
 Plug 'neovim/nvim-lspconfig'
-Plug 'onsails/lspkind-nvim'
+" Plug 'onsails/lspkind-nvim'
 Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/nvim-cmp'
-Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
+Plug 'tami5/lspsaga.nvim' 
+Plug 'vim-denops/denops.vim'
+Plug 'ervandew/supertab'
+Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
+Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
 "TERMINAL
 Plug 'kassio/neoterm'
 Plug 'voldikss/fzf-floaterm'
@@ -15,7 +16,6 @@ Plug 'voldikss/vim-floaterm'
 "UTILITIES
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'airblade/vim-rooter'
 Plug 'vimwiki/vimwiki'
 Plug 'wellle/targets.vim'
 Plug 'easymotion/vim-easymotion'
@@ -29,6 +29,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'p00f/nvim-ts-rainbow'
 Plug 'liuchengxu/vista.vim'
 Plug 'folke/trouble.nvim'
+Plug 'folke/which-key.nvim'
 "SNIPS
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -45,25 +46,37 @@ Plug 'AndrewRadev/tagalong.vim'
 "UI PLUGS
 Plug 'glepnir/dashboard-nvim'
 Plug 'marko-cerovac/material.nvim'
-" Plug 'hoob3rt/lualine.nvim'
-Plug 'numine777/lualine.nvim'
+Plug 'nvim-lualine/lualine.nvim'
 Plug 'projekt0n/github-nvim-theme'
-Plug 'ellisonleao/gruvbox.nvim'
+Plug 'morhetz/gruvbox'
+Plug 'rktjmp/lush.nvim'
 Plug 'sainnhe/gruvbox-material'
+Plug 'arcticicestudio/nord-vim'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'ryanoasis/vim-devicons'
 Plug 'fenetikm/falcon'
 Plug 'EdenEast/nightfox.nvim'
 Plug 'sainnhe/sonokai'
-Plug 'arcticicestudio/nord-vim'
+Plug 'tomasr/molokai'
+Plug 'sainnhe/everforest'
+Plug 'srcery-colors/srcery-vim'
+Plug 'nanotech/jellybeans.vim'
 Plug 'kwsp/halcyon-neovim'
 Plug 'shatur/neovim-ayu'
 Plug 'tomasiser/vim-code-dark'
+Plug 'bluz71/vim-nightfly-guicolors'
 Plug 'mhartington/oceanic-next'
 Plug 'catppuccin/nvim'
 Plug 'NTBBloodbath/doom-one.nvim'
 Plug 'joshdick/onedark.vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'AlessandroYorba/Alduin'
+Plug 'cocopon/iceberg.vim'
+Plug 'tanvirtin/monokai.nvim'
+Plug 'tjdevries/colorbuddy.vim'
+Plug 'tjdevries/gruvbuddy.nvim'
+Plug 'Th3Whit3Wolf/onebuddy'
 "FILETREE AND LINES
 Plug 'lambdalisue/fern.vim'
 Plug 'savq/melange'
@@ -73,6 +86,7 @@ Plug 'lambdalisue/nerdfont.vim'
 Plug 'lambdalisue/glyph-palette.vim'
 Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 Plug 'lambdalisue/fern-hijack.vim'
+Plug 'ray-x/guihua.lua', {'do': 'cd lua/fzy && make' }
 "GIT PLUGINS
 Plug 'nvim-lua/plenary.nvim'
 Plug 'TimUntersberger/neogit'

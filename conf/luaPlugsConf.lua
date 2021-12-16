@@ -9,114 +9,25 @@ require("indent_blankline").setup({
 })
 
 --Enable (broadcasting) snippet capability for completion
+local nvim_lsp = require("lspconfig")
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+local coq = require("coq")
 
-local cmp = require("cmp")
-local lspkind = require("lspkind")
-
-local source_mapping = {
-	buffer = "[Buffer]",
-	nvim_lsp = "[LSP]",
-	cmp_tabnine = "[TN]",
-	path = "[Path]",
-}
-
-local cmp_kinds = {
-	Text = "  ",
-	Method = "  ",
-	Function = "  ",
-	Constructor = "  ",
-	Field = "  ",
-	Variable = "  ",
-	Class = "  ",
-	Interface = "  ",
-	Module = "  ",
-	Property = "  ",
-	Unit = "  ",
-	Value = "  ",
-	Enum = "  ",
-	Keyword = "  ",
-	Snippet = "  ",
-	Color = "  ",
-	File = "  ",
-	Reference = "  ",
-	Folder = "  ",
-	EnumMember = "  ",
-	Constant = "  ",
-	Struct = "  ",
-	Event = "  ",
-	Operator = "  ",
-	TypeParameter = "  ",
-}
-
-local tabnine = require("cmp_tabnine.config")
-tabnine:setup({
-	max_lines = 1000,
-	max_num_results = 20,
-	sort = true,
-	run_on_every_keystroke = true,
-	snippet_placeholder = "..",
-})
-
-cmp.setup({
-	snippet = {
-		expand = function(args)
-			vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-		end,
-	},
-	mapping = {
-		["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
-		["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
-		["<CR>"] = cmp.mapping.confirm({ select = true }),
-		["<M-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-		["<M-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-	},
-	sources = cmp.config.sources({
-		{ name = "nvim_lsp" },
-		{ name = "cmp_tabnine" },
-		{
-			name = "buffer",
-			option = {
-				get_bufnrs = function()
-					local bufs = {}
-					for _, win in ipairs(vim.api.nvim_list_wins()) do
-						bufs[vim.api.nvim_win_get_buf(win)] = true
-					end
-					return vim.tbl_keys(bufs)
-				end,
-			},
-		},
-		{ name = "path" },
-	}),
-	completion = {
-		completeopt = "menu,menuone,noinsert,noselect",
-	},
-	formatting = {
-		format = function(entry, vim_item)
-			vim_item.kind = (cmp_kinds[vim_item.kind] or "") .. vim_item.kind
-			local menu = source_mapping[entry.source.name]
-			if entry.source.name == "cmp_tabnine" then
-				if entry.completion_item.data ~= nil and entry.completion_item.data.detail ~= nil then
-					menu = entry.completion_item.data.detail .. " " .. menu
-				end
-				vim_item.kind = ""
-			end
-			return vim_item
-		end,
-	},
-})
-
-local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
-
-require("lspconfig").cssls.setup({
+nvim_lsp.cssls.setup({
+	coq.lsp_ensure_capabilities(),
 	capabilities = capabilities,
 })
-require("lspconfig").html.setup({
+nvim_lsp.html.setup({
+	coq.lsp_ensure_capabilities(),
 	capabilities = capabilities,
 })
-require("lspconfig").tsserver.setup({
+nvim_lsp.tsserver.setup({
+	coq.lsp_ensure_capabilities(),
 	capabilities = capabilities,
 })
-require("lspconfig").pyright.setup({
+nvim_lsp.pyright.setup({
+	coq.lsp_ensure_capabilities(),
 	capabilities = capabilities,
 })
 
@@ -136,7 +47,11 @@ require("nvim-treesitter.configs").setup({
 		enable = true,
 		disable = { "html" },
 	},
+	incremental_selection = {
+		enable = true,
+	},
 	rainbow = {
+
 		enable = true,
 		-- disable = { "html" },
 		extended_mode = false,
@@ -187,10 +102,6 @@ local async = require("plenary.async")
 local neogit = require("neogit")
 neogit.setup({
 	integrations = {
-		-- Neogit only provides inline diffs. If you want a more traditional way to look at diffs, you can use `sindrets/diffview.nvim`.
-		-- The diffview integration enables the diff popup, which is a wrapper around `sindrets/diffview.nvim`.
-		--
-		-- Requires you to have `sindrets/diffview.nvim` installed.
 		diffview = true,
 	},
 })
@@ -198,25 +109,87 @@ neogit.setup({
 --GITSINGS
 require("gitsigns").setup({
 	keymaps = {
-		-- Default keymap options
-		noremap = true,
-		["n ]c"] = { expr = true, "&diff ? ']c' : '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>'" },
-		["n [c"] = { expr = true, "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'" },
-		["n <leader>gs"] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
-		["v <leader>gs"] = '<cmd>lua require"gitsigns".stage_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
-		["n <leader>gu"] = '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>',
-		["n <leader>gr"] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
-		["v <leader>gr"] = '<cmd>lua require"gitsigns".reset_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
-		["n <leader>gR"] = '<cmd>lua require"gitsigns".reset_buffer()<CR>',
-		["n <leader>gp"] = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
-		["n <leader>gb"] = '<cmd>lua require"gitsigns".blame_line{full=true}<CR>',
-		["n <leader>gS"] = '<cmd>lua require"gitsigns".stage_buffer()<CR>',
-		["n <leader>gU"] = '<cmd>lua require"gitsigns".reset_buffer_index()<CR>',
-		-- Text objects
-		["o ih"] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
-		["x ih"] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
+		noremap = false,
 	},
 })
 
 --DIFFVIEW
 require("diffview").setup({})
+
+--LSPSAGA
+local lspsaga = require("lspsaga")
+lspsaga.setup({ -- defaults ...
+	debug = false,
+	use_saga_diagnostic_sign = true,
+	-- diagnostic sign
+	error_sign = "",
+	warn_sign = "",
+	hint_sign = "",
+	infor_sign = "",
+	diagnostic_header_icon = "   ",
+	-- code action title icon
+	code_action_icon = " ",
+	code_action_prompt = {
+		enable = true,
+		sign = true,
+		sign_priority = 40,
+		virtual_text = true,
+	},
+	finder_definition_icon = "  ",
+	finder_reference_icon = "  ",
+	max_preview_lines = 10,
+	finder_action_keys = {
+		open = "o",
+		vsplit = "s",
+		split = "i",
+		quit = "q",
+		scroll_down = "<C-f>",
+		scroll_up = "<C-b>",
+	},
+	code_action_keys = {
+		quit = "q",
+		exec = "<CR>",
+	},
+	rename_action_keys = {
+		quit = "<C-c>",
+		exec = "<CR>",
+	},
+	definition_preview_icon = "  ",
+	border_style = "single",
+	rename_prompt_prefix = "➤",
+	server_filetype_map = {},
+	diagnostic_prefix_format = "%d. ",
+})
+
+require("code_runner").setup({
+	filetype_path = "/home/maudev/.config/nvim/code_runner.json",
+})
+
+require("lualine").setup({
+	options = {
+		icons_enabled = true,
+		theme = "auto",
+		component_separators = { left = "", right = "" },
+		section_separators = { left = "", right = "" },
+		disabled_filetypes = {},
+		always_divide_middle = true,
+	},
+	sections = {
+		lualine_a = { "mode" },
+		lualine_b = { "branch", "diff", "diagnostics" },
+		lualine_c = { "filename" },
+		lualine_x = { "encoding", "fileformat", "filetype" },
+		lualine_y = { "progress" },
+		lualine_z = { "location" },
+	},
+	inactive_sections = {
+		lualine_a = {},
+		lualine_b = {},
+		lualine_c = { "filename" },
+		lualine_x = { "location" },
+		lualine_y = {},
+		lualine_z = {},
+	},
+	tabline = {},
+	extensions = {},
+})
