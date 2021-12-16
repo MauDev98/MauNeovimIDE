@@ -161,10 +161,6 @@ lspsaga.setup({ -- defaults ...
 	diagnostic_prefix_format = "%d. ",
 })
 
-require("code_runner").setup({
-	filetype_path = "/home/maudev/.config/nvim/code_runner.json",
-})
-
 require("lualine").setup({
 	options = {
 		icons_enabled = true,
