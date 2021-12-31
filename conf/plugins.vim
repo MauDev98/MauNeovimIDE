@@ -3,6 +3,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'neovim/nvim-lspconfig'
 " Plug 'onsails/lspkind-nvim'
 Plug 'neovim/nvim-lspconfig'
+Plug 'williamboman/nvim-lsp-installer'
 Plug 'tami5/lspsaga.nvim' 
 Plug 'vim-denops/denops.vim'
 Plug 'ervandew/supertab'
@@ -77,15 +78,16 @@ Plug 'tanvirtin/monokai.nvim'
 Plug 'tjdevries/colorbuddy.vim'
 Plug 'tjdevries/gruvbuddy.nvim'
 Plug 'Th3Whit3Wolf/onebuddy'
-"FILETREE AND LINES
-Plug 'lambdalisue/fern.vim'
 Plug 'savq/melange'
+"FILETREE AND LINES
 Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
+Plug 'kyazdani42/nvim-tree.lua'
 Plug 'akinsho/bufferline.nvim'
 Plug 'lambdalisue/nerdfont.vim'
 Plug 'lambdalisue/glyph-palette.vim'
-Plug 'lambdalisue/fern-renderer-nerdfont.vim'
-Plug 'lambdalisue/fern-hijack.vim'
+" Plug 'lambdalisue/fern.vim'
+" Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+" Plug 'lambdalisue/fern-hijack.vim'
 Plug 'ray-x/guihua.lua', {'do': 'cd lua/fzy && make' }
 "GIT PLUGINS
 Plug 'nvim-lua/plenary.nvim'

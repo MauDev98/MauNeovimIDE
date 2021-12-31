@@ -20,8 +20,7 @@ set pumheight=10
 set completeopt-=preview
 "REDUCE SYNTAX LAG
 syntax sync minlines=256
-set nocursorcolumn
-set nocursorline
+set cursorline
 set ttimeoutlen=0
 set re=1
 set ignorecase
@@ -36,8 +35,5 @@ luafile ~/.config/nvim/conf/luaPlugsConf.lua
 luafile ~/.config/nvim/conf/which-key.lua
 
 lua require('colorbuddy').colorscheme('onebuddy')
+let &fcs='eob: '
 
-
-" Load the colorscheme
-" set background=dark 
-" colorscheme alduin

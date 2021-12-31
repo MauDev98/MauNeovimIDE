@@ -49,42 +49,20 @@ let g:neoformat_enabled_javascript = ['jsbeautify']
 let g:neoformat_enabled_css = ['cssbeautify']
 let g:neoformat_enabled_python = ['black']
 
-"FERN CONF
-let g:fern#renderer = "nerdfont"
-let g:fern#hide_cursor = 1
-let g:fern#drawer_width = 35
-augroup my-glyph-palette
-  autocmd! *
-  autocmd FileType fern call glyph_palette#apply()
-  autocmd FileType nerdtree,startify call glyph_palette#apply()
-augroup END
-
-function! s:init_fern() abort
-  " Use 'select' instead of 'edit' for default 'open' action
-  nmap <buffer> s <Plug>(fern-action-open:vsplit)
-  nmap <buffer> x <Plug>(fern-action-open:split)
-endfunction
-
-augroup fern-custom
-  autocmd! *
-  autocmd FileType fern call s:init_fern()
-augroup END
-
 "DASHBOARD
 let g:dashboard_default_executive ='fzf'
 let g:dashboard_session_directory = '/home/maudev/.config/nvim/sessions'
 
 let g:dashboard_custom_header = [
-\ '          ___  ___                            _',
-\ '          |  \/  |                           | |',
-\ '          | .  . | __ _ _   _  __ _  ___   __| |',
-\ '          | |\/| |/ _` | | | |/ _` |/ _ \ / _` |',
-\ '          | |  | | (_| | |_| | (_| | (_) | (_| |',
-\ '          \_|  |_/\__,_|\__,_|\__, |\___/ \__,_|',
-\ '                               __/ |              ',
-\ '                              |___/               ',
-\ '                                                         ',
-\]
+\'                                                        ',
+\'___  ___           ______             ___________ _____ ', 
+\'|  \/  |           |  _  \           |_   _|  _  \  ___| ', 
+\'| .  . | __ _ _   _| | | |_____   __   | | | | | | |__  ', 
+\'| |\/| |/ _` | | | | | | / _ \ \ / /   | | | | | |  __| ', 
+\'| |  | | (_| | |_| | |/ /  __/\ V /   _| |_| |/ /| |___ ', 
+\'\_|  |_/\__,_|\__,_|___/ \___| \_/    \___/|___/ \____/ ',
+\'                                                        ',
+\'                                                        ',] 
 
 "FLOATERM
 let g:floaterm_autoinsert = v:false
@@ -102,11 +80,40 @@ let g:neoformat_php_php_beautifier = {
 let g:neoformat_enabled_php = ['php_beautifier']
 
 "COQ CONFIG
-let g:coq_settings = {"auto_start": 'shut-up', "keymap.recommended": v:false, "keymap.pre_select": v:false, "clients.tabnine.enabled" : v:true, "clients.tabnine.weight_adjust": 2}
+let g:coq_settings = {"auto_start": 'shut-up', "keymap.recommended": v:false, "keymap.pre_select": v:false, "clients.tabnine.enabled" : v:true}
 ino <silent><expr> <Esc>   pumvisible() ? "\<C-e><Esc>" : "\<Esc>"
 ino <silent><expr> <C-c>   pumvisible() ? "\<C-e><C-c>" : "\<C-c>"
 ino <silent><expr> <BS>    pumvisible() ? "\<C-e><BS>"  : "\<BS>"
 ino <silent><expr> <CR>    pumvisible() ? (complete_info().selected == -1 ? "\<C-e><CR>" : "\<C-y>") : "\<CR>"
 ino <silent><expr> <M-j>   pumvisible() ? "\<C-n>" : "\<Tab>"
 ino <silent><expr> <M-k> pumvisible() ? "\<C-p>" : "\<BS>"
+
+"NVIM TREE
+let g:nvim_tree_respect_buf_cwd = 1
+let g:nvim_tree_indent_markers = 1
+let g:nvim_tree_highlight_opened_files = 1
+let g:nvim_tree_icons = {
+    \ 'default': '',
+    \ 'symlink': '',
+    \ 'git': {
+    \   'unstaged': "✗",
+    \   'staged': "✓",
+    \   'unmerged': "",
+    \   'renamed': "➜",
+    \   'untracked': "★",
+    \   'deleted': "",
+    \   'ignored': "◌"
+    \   },
+    \ 'folder': {
+    \   'arrow_open': "",
+    \   'arrow_closed': "",
+    \   'default': "",
+    \   'open': "",
+    \   'empty': "",
+    \   'empty_open': "",
+    \   'symlink': "",
+    \   'symlink_open': "",
+    \   }
+    \ }
+
 

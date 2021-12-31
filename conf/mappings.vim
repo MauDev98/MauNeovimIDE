@@ -12,6 +12,7 @@ nnoremap <A-h> _
 nnoremap <A-l> $
 vnoremap <A-h> _
 vnoremap <A-l> $
+vnoremap <leader>y "+y
 "INSERT MODE MAPPINGS
 inoremap <M-l> <right>
 inoremap <M-h> <left>

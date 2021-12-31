@@ -8,6 +8,27 @@ require("indent_blankline").setup({
 	space_char_blankline = " ",
 })
 
+-- NVIM LSP AUTO INSTALL
+local lsp_installer = require("nvim-lsp-installer")
+
+-- Register a handler that will be called for all installed servers.
+-- Alternatively, you may also register handlers on specific server instances instead (see example below).
+lsp_installer.on_server_ready(function(server)
+	local opts = {}
+	if server.name == "sumneko_lua" then
+		opts = {
+			settings = {
+				Lua = {
+					diagnostics = {
+						globals = { "vim", "use" },
+					},
+				},
+			},
+		}
+	end
+	server:setup(opts)
+end)
+
 --Enable (broadcasting) snippet capability for completion
 local nvim_lsp = require("lspconfig")
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -23,7 +44,7 @@ nvim_lsp.html.setup({
 	capabilities = capabilities,
 })
 nvim_lsp.tsserver.setup({
-	coq.lsp_ensure_capabilities(),
+	-- coq.lsp_ensure_capabilities(),
 	capabilities = capabilities,
 })
 nvim_lsp.pyright.setup({
@@ -161,6 +182,7 @@ lspsaga.setup({ -- defaults ...
 	diagnostic_prefix_format = "%d. ",
 })
 
+-- LUALINE
 require("lualine").setup({
 	options = {
 		icons_enabled = true,
@@ -189,3 +211,15 @@ require("lualine").setup({
 	tabline = {},
 	extensions = {},
 })
+
+-- NVIM-TREE LUA
+require("nvim-tree").setup({
+	update_cwd = true,
+	hijack_cursor = true,
+	update_focused_file = {
+		enable = true,
+		update_cwd = true,
+		ignore_list = {},
+	},
+})
+

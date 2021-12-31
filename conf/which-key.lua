@@ -10,7 +10,7 @@ local mappings = {
 	},
 	c = {
 		name = "Config",
-		e = { ":e ~/.config/nvim/init.vim<CR>", "Edit config file" },
+		e = { ":e ~/.config/nvim/init.vim<CR>:cd %:p:h<CR>", "Edit config file" },
 		s = { ":source ~/.config/nvim/init.vim<CR>", "Source config file" },
 	},
 	t = {
@@ -40,9 +40,9 @@ local mappings = {
 	},
 	e = {
 		name = "File explorer",
-		o = { ":Fern %:h -drawer<CR>", "Open file explorer" },
-		t = { ":Fern %:h -drawer -toggle<CR>", "Toggle file explorer" },
-		f = { ":FernDo :<CR>", "Focus file explorer from current file" },
+		o = { ":NvimTreeFindFile<CR>", "Open file explorer" },
+		t = { ":NvimTreeFindFileToggle<CR>", "Toggle file explorer" },
+		-- f = { ":FernDo :<CR>", "Focus file explorer from current file" },
 	},
 	b = {
 		name = "Buffer actions",
